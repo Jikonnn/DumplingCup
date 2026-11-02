@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dumpling Cup | A Cup of Warmth, A Bite of Happiness</title>
+  <meta name="description" content="Dumpling Cup: dumpling ayam homemade dalam satu cangkir hangat.">
+  <meta name="theme-color" content="#7E1B11">
+  <link rel="icon" href="assets/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind (Play CDN) -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { maroon: '#7E1B11', cream: '#FFF8E8', chili: '#C8321E' },
+        fontFamily: { display: ['Grandstander', 'ui-rounded', 'system-ui', 'sans-serif'] }
+      } }
+    };
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-cream font-display text-maroon antialiased">
+
+  <!-- HEADER -->
+  <header class="fixed inset-x-0 top-0 z-50 flex h-16 items-center justify-between bg-maroon px-4 sm:h-[5.25rem] sm:px-8">
+    <a href="#hero" aria-label="Dumpling Cup, kembali ke atas" class="rounded-full">
+      <img src="assets/logo.png" alt="" width="56" height="54" class="h-11 w-11 rounded-full sm:h-14 sm:w-14">
+    </a>
+    <a href="#order" class="rounded px-2 text-xl font-bold text-cream sm:text-2xl">Order</a>
+  </header>
+
+  <main>
+    <!-- HERO: track tinggi + stage sticky. Progres scroll track -> variabel --p (0..1) -->
+    <section id="hero" data-parallax-track class="hero-track relative">
+      <div class="hero-stage sticky top-0 h-[100svh] overflow-hidden">
+
+        <!-- Pattern Awan Parallax (Layer Paling Belakang) -->
+        <div class="cloud cloud--left" aria-hidden="true">
+          <img src="assets/cloud.png" alt="" width="600" height="400">
+        </div>
+        <div class="cloud cloud--right" aria-hidden="true">
+          <img src="assets/cloud.png" alt="" width="600" height="400">
+        </div>
+
+        <!-- Pattern/aset samping (simetris) -->
+        <div class="cup cup--left" aria-hidden="true">
+          <img src="assets/cup-left.png" alt="" width="418" height="364">
+        </div>
+        <div class="cup cup--right" aria-hidden="true">
+          <img src="assets/cup-right.png" alt="" width="410" height="384">
+        </div>
+
+        <!-- Konten tengah -->
+        <div class="hero-copy relative z-10 mx-auto flex h-full max-w-3xl flex-col items-center justify-center px-6 pt-16 text-center sm:pt-[5.25rem]">
+          <h1>
+            <img src="assets/wordmark.png" alt="Dumpling Cup" width="1000" height="423"
+                 class="w-[min(86vw,44rem)] h-auto">
+          </h1>
+          <p class="mt-5 max-w-md text-lg font-bold sm:text-2xl">
+            A Cup of Warmth, A Bite of Happiness.
+          </p>
+          <a href="#order"
+             class="mt-7 inline-block rounded-sm bg-maroon px-8 py-3 text-lg font-bold text-cream transition-colors hover:bg-chili sm:text-xl">
+            Order sekarang
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAGIAN INGREDIENTS -->
+    <section id="ingredients" class="ingredients-section">
+      <div class="ingredients-container">
+        
+        <!-- Item Kiri: Tepung Berkualitas (15%) -->
+        <div class="ingredient-item left-item">
+          <div class="img-wrapper">
+            <img src="assets/ing-flour.png" alt="Tepung Berkualitas">
+          </div>
+          <div class="text-wrapper">
+            <span class="percent">15%</span>
+            <h3 class="label">Tepung Berkualitas</h3>
+          </div>
+        </div>
+
+        <!-- Mangkuk Utama di Tengah -->
+        <div class="center-cup">
+          <img src="assets/cup-hero.png" alt="Dumpling Cup Hero" class="hero-cup-img">
+        </div>
+
+        <!-- Item Kanan Atas: Ayam Pilihan (85%) -->
+        <div class="ingredient-item right-top-item">
+          
+          <div class="img-wrapper">
+            <img src="assets/ing-chicken.png" alt="Ayam Pilihan">
+          </div>
+          <div class="text-wrapper">
+            <span class="percent">85%</span>
+            <h3 class="label">Ayam Pilihan</h3>
+          </div>
+        </div>
+
+        <!-- Item Kanan Bawah: Bumbu Berkualitas (dengan titik penunjuk) -->
+        <div class="ingredient-item right-bottom-item">
+          <!-- Garis Melengkung SVG Kanan Bawah -->
+          <div class="img-wrapper">
+            <img src="assets/ing-spice.png" alt="Bumbu Berkualitas">
+          </div>
+          <div class="text-wrapper">
+            <h3 class="label">Bumbu” Berkualitas</h3>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Badge 100% Home Made -->
+      <div class="homemade-footer">
+        <p>-- 100% Home Made --</p>
+      </div>
+    </section>
+
+    <!-- FILOSOFI -->
+    <section id="filosofi" class="bg-maroon px-6 py-20 text-cream sm:px-10 sm:py-28">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="text-4xl font-bold sm:text-5xl">Filosofi</h2>
+        <p class="mt-6 text-xl font-bold sm:text-2xl">
+          “A Cup of Warmth, A Bite of Happiness.”
+        </p>
+        <p class="mt-2 text-lg sm:text-xl">Artinya: secangkir kehangatan, satu gigitan kebahagiaan.</p>
+        <p class="mt-8 text-lg leading-relaxed sm:text-xl">
+          Dumpling Cup adalah makanan sederhana yang menghadirkan kehangatan, rasa nikmat,
+          dan kebahagiaan dalam setiap gigitan.
+        </p>
+      </div>
+    </section>
+
+    <section id="order" class="flex flex-col items-center px-6 py-20 text-center sm:py-28">
+      <img src="assets/cup-hero.png" alt="Semangkuk Dumpling Cup dengan saus cabai dan daun bawang"
+           width="616" height="533" loading="lazy" class="w-[min(80vw,26rem)] h-auto">
+      <h2 class="mt-8 text-3xl font-bold sm:text-4xl">Order Now!</h2>
+      
+      <!-- Tombol Contact Us yang diperbarui -->
+      <a href="https://wa.me/6287805432188" target="_blank" rel="noopener noreferrer"
+         class="mt-6 inline-block rounded-full bg-maroon px-10 py-4 text-xl font-bold text-cream transition-colors hover:bg-chili shadow-md">
+        Contact Us
+      </a>
+    </section>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

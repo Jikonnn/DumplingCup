@@ -1,0 +1,275 @@
+:root {
+  --maroon: #7E1B11;
+  --cream: #FFF8E8;
+  --ease-out: cubic-bezier(.2, .8, .2, 1);
+  --header-h: 4rem;
+}
+@media (min-width: 640px) { :root { --header-h: 5.25rem; } }
+
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); background: var(--cream); }
+
+:where(a, button):focus-visible {
+  outline: 3px solid #C8321E;
+  outline-offset: 3px;
+}
+
+/* Tinggi track = durasi efek. Makin besar, makin lambat cup bergeser. */
+.hero-track { --p: 0; height: 180vh; }
+@supports (height: 1svh) { .hero-track { height: 180svh; } }
+
+/* ---------- Awan Parallax (Latar Belakang Hero) ---------- */
+.cloud {
+  position: absolute;
+  bottom: clamp(1rem, 5vh, 3rem);
+  width: clamp(20rem, 45vw, 42rem);
+  z-index: 0; /* Berada di belakang cup (z-index: 1) dan konten utama */
+  opacity: 0.6;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Awan Kiri: Keluar ke arah kiri saat di-scroll */
+.cloud--left {
+  left: -2vw;
+  transform: translate3d(calc(var(--p) * -110%), 0, 0);
+}
+
+/* Awan Kanan: Keluar ke arah kanan saat di-scroll */
+.cloud--right {
+  right: -2vw;
+  transform: translate3d(calc(var(--p) * 110%), 0, 0);
+}
+
+.cloud img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- Cup samping (simetris) ---------- */
+.cup {
+  position: absolute;
+  bottom: clamp(1.25rem, 6vh, 4rem);
+  width: clamp(8.5rem, 27vw, 25rem);
+  z-index: 1;
+  will-change: transform;
+  transform-origin: 50% 100%;
+}
+.cup--left {
+  left: clamp(.25rem, 4vw, 5rem);
+  --from: -45%;
+  transform:
+    translate3d(calc(var(--p) * -140%), calc(var(--p) * 8%), 0)
+    rotate(calc(var(--p) * -14deg));
+}
+.cup--right {
+  right: clamp(.25rem, 4vw, 5rem);
+  --from: 45%;
+  transform:
+    translate3d(calc(var(--p) * 140%), calc(var(--p) * 8%), 0)
+    rotate(calc(var(--p) * 14deg));
+}
+
+.cup img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 16px 18px rgba(126, 27, 17, .16));
+  animation: cup-in 1s var(--ease-out) both;
+}
+.cup--right img { animation-delay: .12s; }
+
+@keyframes cup-in {
+  from { opacity: 0; transform: translateX(var(--from)); }
+}
+
+/* Konten tengah memudar halus saat scroll */
+.hero-copy {
+  transform: translate3d(0, calc(var(--p) * -5vh), 0);
+  opacity: calc(1 - var(--p) * .6);
+}
+
+/* ---------- Responsif Hero ---------- */
+@media (max-width: 639px) {
+  .cup { width: 44vw; bottom: 1rem; }
+  .cup--left  { left: -7vw; }
+  .cup--right { right: -7vw; }
+  .cloud { width: 80vw; bottom: 2rem; }
+  .hero-copy { padding-bottom: 22vh; }
+}
+
+@media (max-height: 480px) and (orientation: landscape) {
+  .cup { width: 18vw; bottom: .5rem; }
+  .hero-copy { padding-bottom: 0; }
+}
+
+/* ---------- Aksesibilitas gerak ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cup img { animation: none; }
+  .cup, .cloud, .hero-copy { transform: none !important; opacity: 1 !important; }
+}
+
+/* ==========================================================
+   Section Ingredients
+   ========================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:wght@500;700&display=swap');
+
+.ingredients-section {
+  background-color: #fff8e8;
+  font-family: 'Grandstander', cursive, sans-serif;
+  padding: 80px 20px 50px 20px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ingredients-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Gambar Mangkuk Tengah */
+.center-cup {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.hero-cup-img {
+  width: 320px;
+  height: auto;
+  display: block;
+}
+
+/* Item Bahan */
+.ingredient-item {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 3;
+}
+
+.img-wrapper img {
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.text-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-wrapper .percent {
+  color: #7E1B11;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.text-wrapper .label {
+  color: #33140A;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Posisi Kiri: Tepung Berkualitas */
+.left-item {
+  left: 5%;
+  top: 30%;
+}
+.left-item .img-wrapper img {
+  width: 75px;
+}
+
+/* Posisi Kanan Atas: Ayam Pilihan */
+.right-top-item {
+  right: 10%;
+  top: 18%;
+}
+.right-top-item .img-wrapper img {
+  width: 65px;
+}
+
+/* Posisi Kanan Bawah: Bumbu Berkualitas */
+.right-bottom-item {
+  right: 12%;
+  bottom: 12%;
+}
+.right-bottom-item .img-wrapper img {
+  width: 80px;
+}
+
+/* SVGs Garis Melengkung */
+.curve-line {
+  position: absolute;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.line-left {
+  width: 110px;
+  height: 45px;
+  right: -105px;
+  top: 55%;
+}
+
+.line-right-top {
+  width: 130px;
+  height: 55px;
+  left: -125px;
+  top: 50%;
+}
+
+.line-right-bottom {
+  width: 140px;
+  height: 55px;
+  left: -135px;
+  top: 10%;
+}
+
+/* Footer Home Made */
+.homemade-footer {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.homemade-footer p {
+  color: #33140A;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* Responsive Ingredients untuk Layar Kecil */
+@media (max-width: 900px) {
+  .ingredients-container {
+    flex-direction: column;
+    min-height: auto;
+    gap: 30px;
+  }
+
+  .ingredient-item {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .curve-line {
+    display: none;
+  }
+
+  .hero-cup-img {
+    width: 240px;
+  }
+}
